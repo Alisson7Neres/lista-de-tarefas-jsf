@@ -5,110 +5,79 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>lista-de-tarefas</groupId>
-	<artifactId>lista-de-tarefas</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+<groupId>lista-de-tarefas</groupId>
+  <artifactId>lista-de-tarefas</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
 
-	<name>Archetype - lista-de-tarefas</name>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
 
-	<!-- FIXME change it to the project's website -->
-	<url>http://www.example.com</url>
+  <dependencies>
+    
+    <!-- https://mvnrepository.com/artifact/com.sun.faces/jsf-api -->
+<dependency>
+    <groupId>com.sun.faces</groupId>
+    <artifactId>jsf-api</artifactId>
+    <version>2.2.0</version>
+    <scope>compile</scope>
+</dependency>
+    
+    <!-- https://mvnrepository.com/artifact/com.sun.faces/jsf-impl -->
+<dependency>
+    <groupId>com.sun.faces</groupId>
+    <artifactId>jsf-impl</artifactId>
+    <version>2.2.0</version>
+    <scope>compile</scope>
+</dependency>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.7</maven.compiler.source>
-		<maven.compiler.target>1.7</maven.compiler.target>
-	</properties>
+<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
+<dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-entitymanager</artifactId>
+    <version>5.4.21.Final</version>
+</dependency>
 
-	<build>
-		<extensions>
-			<extension>
-				<groupId>org.apache.maven.archetype</groupId>
-				<artifactId>archetype-packaging</artifactId>
-				<version>3.0.1</version>
-			</extension>
-		</extensions>
-		<pluginManagement><!-- lock down plugins versions to avoid using Maven 
-				defaults (may be moved to parent pom) -->
-			<plugins>
-				<plugin>
-					<artifactId>maven-clean-plugin</artifactId>
-					<version>3.1.0</version>
-				</plugin>
-				<plugin>
-					<artifactId>maven-archetype-plugin</artifactId>
-					<version>3.0.1</version>
-				</plugin>
-				<plugin>
-					<artifactId>maven-resources-plugin</artifactId>
-					<version>3.0.2</version>
-				</plugin>
-				<plugin>
-					<artifactId>maven-install-plugin</artifactId>
-					<version>2.5.2</version>
-				</plugin>
-				<plugin>
-					<artifactId>maven-deploy-plugin</artifactId>
-					<version>2.8.2</version>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-	</build>
+<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
+<dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-core</artifactId>
+    <version>5.4.21.Final</version>
+    <scope>compile</scope>
+</dependency>
 
-	<dependencies>
-		<dependency>
-			<!-- https://mvnrepository.com/artifact/com.sun.faces/jsf-api -->
-				<groupId>com.sun.faces</groupId>
-				<artifactId>jsf-api</artifactId>
-				<version>2.2.0</version>
-				<scope>compile</scope>
-			</dependency>
+<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+<dependency>
+    <groupId>org.postgresql</groupId>
+    <artifactId>postgresql</artifactId>
+    <version>42.2.16</version>
+    <scope>compile</scope>
+</dependency>
 
-			<!-- https://mvnrepository.com/artifact/com.sun.faces/jsf-impl -->
-			<dependency>
-				<groupId>com.sun.faces</groupId>
-				<artifactId>jsf-impl</artifactId>
-				<version>2.2.0</version>
-				<scope>compile</scope>
-			</dependency>
 
-			<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
-			<dependency>
-				<groupId>org.hibernate</groupId>
-				<artifactId>hibernate-entitymanager</artifactId>
-				<version>5.4.21.Final</version>
-			</dependency>
+<!-- https://mvnrepository.com/artifact/jstl/jstl -->
+<dependency>
+    <groupId>jstl</groupId>
+    <artifactId>jstl</artifactId>
+    <version>1.2</version>
+</dependency>
 
-			<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
-			<dependency>
-				<groupId>org.hibernate</groupId>
-				<artifactId>hibernate-core</artifactId>
-				<version>5.4.21.Final</version>
-				<scope>compile</scope>
-			</dependency>
+<!-- https://mvnrepository.com/artifact/net.sourceforge.jtds/jtds -->
+<dependency>
+    <groupId>net.sourceforge.jtds</groupId>
+    <artifactId>jtds</artifactId>
+    <version>1.2.2</version>
+</dependency>
 
-			<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
-			<dependency>
-				<groupId>org.postgresql</groupId>
-				<artifactId>postgresql</artifactId>
-				<version>42.2.16</version>
-				<scope>compile</scope>
-			</dependency>
+<!-- https://mvnrepository.com/artifact/org.primefaces/primefaces -->
+<dependency>
+    <groupId>org.primefaces</groupId>
+    <artifactId>primefaces</artifactId>
+    <version>7.0</version>
+</dependency>
 
-			<!-- https://mvnrepository.com/artifact/jstl/jstl -->
-			<dependency>
-				<groupId>jstl</groupId>
-				<artifactId>jstl</artifactId>
-				<version>1.2</version>
-			</dependency>
 
-			<!-- https://mvnrepository.com/artifact/net.sourceforge.jtds/jtds -->
-			<dependency>
-				<groupId>net.sourceforge.jtds</groupId>
-				<artifactId>jtds</artifactId>
-				<version>1.2.2</version>
-			</dependency>
 	</dependencies>
 
 </project>

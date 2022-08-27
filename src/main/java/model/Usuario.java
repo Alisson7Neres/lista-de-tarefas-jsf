@@ -9,21 +9,21 @@ import com.sun.istack.NotNull;
 
 @Entity
 public class Usuario {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private int id_usuario;
 
 	@NotNull
 	private String nome;
-	
+
 	@NotNull
 	private String email;
-	
+
 	public String getNome() {
 		return nome;
 	}
-	
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
@@ -36,12 +36,12 @@ public class Usuario {
 		this.email = email;
 	}
 
-	public int getId() {
-		return id;
+	public int getId_usuario() {
+		return id_usuario;
 	}
-	
-	public void setId(int id) {
-		this.id = id;
+
+	public void setId_usuario(int id_usuario) {
+		this.id_usuario = id_usuario;
 	}
-	
+
 }

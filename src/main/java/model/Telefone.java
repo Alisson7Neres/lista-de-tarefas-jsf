@@ -11,37 +11,37 @@ import com.sun.istack.NotNull;
 
 @Entity
 public class Telefone {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private int id_telefone;
 
 	@NotNull
 	private String numero;
-	
+
 	@ManyToOne(optional = false, fetch = FetchType.EAGER) // Relacionamento de muitos para um
 	private Usuario usuario;
-	
+
 	public String getNumero() {
 		return numero;
 	}
-	
+
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
-	
-	public int getId() {
-		return id;
+
+	public int getId_telefone() {
+		return id_telefone;
 	}
-	
-	public void setId(int id) {
-		this.id = id;
+
+	public void setId_telefone(int id_telefone) {
+		this.id_telefone = id_telefone;
 	}
-	
+
 	public Usuario getUsuario() {
 		return usuario;
 	}
-	
+
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
