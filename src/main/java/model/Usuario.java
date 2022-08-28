@@ -4,10 +4,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 import com.sun.istack.NotNull;
 
 @Entity
+//consulta JPQL (Java Persistence Query Language
+@NamedQueries({
+	@NamedQuery(name = "Usuario.porId", query = "select u from Usuario u where" + " u.id_usuario = :id_usuario")
+})
 public class Usuario {
 
 	@Id

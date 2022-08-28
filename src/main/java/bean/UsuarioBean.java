@@ -6,22 +6,22 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import dao.UsuarioDAO;
+import dao.DAOGeneric;
 import jakarta.annotation.PostConstruct;
 import model.Usuario;
 
-@ViewScoped
 @ManagedBean(name = "usuarioBean")
+@ViewScoped
 public class UsuarioBean {
 	
 	Usuario usuario = new Usuario();
-	private UsuarioDAO<Usuario> dao = new UsuarioDAO<Usuario>();
+	private DAOGeneric<Usuario> dao = new DAOGeneric<Usuario>();
 	private List<Usuario> usuarios = new ArrayList<Usuario>();
 
 	public String salvar() {
 		usuario = dao.atualizar(usuario);
 		listar();
-		return "";
+		return "finalizar.xhtml";
 	}
 	
 	public String novo() {
@@ -52,15 +52,16 @@ public class UsuarioBean {
 		this.usuario = usuario;
 	}
 
-	public UsuarioDAO<Usuario> getDao() {
+	public DAOGeneric<Usuario> getDao() {
 		return dao;
 	}
 
-	public void setDao(UsuarioDAO<Usuario> dao) {
+	public void setDao(DAOGeneric<Usuario> dao) {
 		this.dao = dao;
 	}
 
 	public List<Usuario> getUsuarios() {
+		usuarios = dao.listarUsuario(Usuario.class);
 		return usuarios;
 	}
 

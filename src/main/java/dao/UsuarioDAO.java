@@ -2,62 +2,17 @@ package dao;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 
-import connection.JPAUtil;
+import model.Usuario;
 
-public class UsuarioDAO<E> {
+public class UsuarioDAO extends DAOGeneric<Usuario>{
 
-	@SuppressWarnings({ "unused" })
-	private static EntityManager entityManager = JPAUtil.getEntityManager();
-
-	public void Salvar(E usuario) {
-
-		EntityManager entityManager = JPAUtil.getEntityManager();
-		EntityTransaction entityTransaction = entityManager.getTransaction();
-		entityTransaction.begin();
-		entityTransaction.commit();
-		entityManager.close();
+	public List<Usuario> findById(int id) {
+		Query query = super.getEntityManager().createQuery
+				("from Usuario where id =  " + id);
+		System.out.println(id);
+		return query.getResultList();
 	}
-
-	public E atualizar(E usuario) {
-
-		EntityManager entityManager = JPAUtil.getEntityManager();
-		EntityTransaction entityTransaction = entityManager.getTransaction();
-		entityTransaction.begin();
-		E retorno = entityManager.merge(usuario);
-		entityTransaction.commit();
-
-		return retorno;
-	}
-
-	public void deletarPorId(E usuario) {
-
-		EntityManager entityManager = JPAUtil.getEntityManager();
-		EntityTransaction entityTransaction = entityManager.getTransaction();
-		entityTransaction.begin();
-
-		Object id = JPAUtil.getPrimaryKey(usuario);
-		entityManager.createQuery("delete from " + usuario.getClass().getCanonicalName() + " where id = " + id)
-				.executeUpdate();
-
-		entityTransaction.commit();
-		entityManager.close();
-	}
-
-	public List<E> listarUsuario(Class<E> usuario) {
-
-		EntityManager entityManager = JPAUtil.getEntityManager();
-		EntityTransaction entityTransaction = entityManager.getTransaction();
-		entityTransaction.begin();
-		@SuppressWarnings("unchecked")
-		List<E> retorno = entityManager.createQuery("from " + usuario.getName()).getResultList();
-
-		entityTransaction.commit();
-		entityManager.close();
-
-		return retorno;
-
-	}
+	
 }
