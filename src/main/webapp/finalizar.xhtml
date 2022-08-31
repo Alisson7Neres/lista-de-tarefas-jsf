@@ -7,30 +7,37 @@
 
 <h:head>
 	<title>Finalizar</title>
+	<link rel="stylesheet" href="css/index.css" />
 </h:head>
 <h:body>
-	
+
 	<ul>
-		<li>Início</li>
-		<li>Contato</li>
-		<li>About</li>
+		<li><a href="index.xhtml">Início</a></li>
+		<li><a href="mailto:alisson.neres@hotmail.com">Contato</a></li>
+		<li><a
+			href="https://github.com/Alisson7Neres/lista-de-tarefas-jsf">About</a></li>
 	</ul>
 
+
 	<h:form id="finalizar">
-		<h:dataTable value="#{usuarioBean.usuarios}" var="user">
-			<br />
-
-			<h:column>
-				<f:facet name="header">Nome</f:facet>
-				<h:outputText value="#{user.nome}"></h:outputText>
-			</h:column>
-			<h:column>
-				<f:facet name="header">Email</f:facet>
-				<h:outputText value="#{user.email}"></h:outputText>
-			</h:column>
-
-		</h:dataTable>
-
+		<table>
+			<h:dataTable value="#{usuarioBean.usuarios}" var="user" styleClass="order-table, dataTableClass"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row">
+				<h:column>
+					<f:facet name="header">Nome</f:facet>
+					<h:outputText value="#{user.nome}"></h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Email</f:facet>
+					<h:outputText value="#{user.email}"></h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Tarefas</f:facet>
+					<h:commandButton></h:commandButton>
+				</h:column>
+			</h:dataTable>
+		</table>
 	</h:form>
 
 </h:body>

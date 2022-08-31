@@ -2,28 +2,60 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<title>INDEX</title>
+	<link rel="stylesheet" href="css/index.css"></link>
+	<style>
+button.ui-button {
+	margin-right: .5rem;
+}
+</style>
 </h:head>
 <h:body>
+	<ul>
+		<li><a href="index.xhtml">Início</a></li>
+		<li><a href="mailto:alisson.neres@hotmail.com">Contato</a></li>
+		<li><a
+			href="https://github.com/Alisson7Neres/lista-de-tarefas-jsf">About</a></li>
+	</ul>
+
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
 	<h:form id="formLogin">
-	<h1>Index</h1>
-	<h:panelGrid columns="2">
-		
-		<h:inputHidden value="#{usuarioBean.usuario.id_usuario}"></h:inputHidden> <br/>
-		
-		<h:outputLabel value="Nome"/>
-		<h:inputText value="#{usuarioBean.usuario.nome}"></h:inputText>
-		
-		<h:outputLabel value="Email"/>
-		<h:inputText value="#{usuarioBean.usuario.email}"></h:inputText>
-		
-		<h:commandButton action="#{usuarioBean.salvar}" value="Salvar"/>
-	</h:panelGrid>
+		<div>
+			<div id="div1">
+				<h:inputHidden value="#{usuarioBean.usuario.id_usuario}"></h:inputHidden>
+				<br />
 
+				<h:outputLabel value="Nome" />
+				<br />
+				<h:inputText value="#{usuarioBean.usuario.nome}"></h:inputText>
+
+				<br />
+				<br />
+				<h:outputLabel value="Email" />
+				<br />
+				<h:inputText value="#{usuarioBean.usuario.email}"></h:inputText>
+				<br /> <br />
+				<h:commandButton action="#{usuarioBean.salvar}" value="Salvar"
+					style="   background-color: #4CAF50;
+							  border: none;
+							  color: white;
+							  padding: 15px 32px;
+							  text-align: center;
+							  text-decoration: none;
+							  display: inline-block;
+							  font-size: 16px;
+							  font-weight: bold;" />
+			</div>
+		</div>
 	</h:form>
-
 </h:body>
 </html>
