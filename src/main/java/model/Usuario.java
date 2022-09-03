@@ -1,18 +1,25 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 import com.sun.istack.NotNull;
 
 @Entity
 //consulta JPQL (Java Persistence Query Language
 @NamedQueries({
-	@NamedQuery(name = "Usuario.porId", query = "select u from Usuario u where" + " u.id_usuario = :id_usuario")
+	@NamedQuery(name = "Usuario.todos", query = "select u from Usuario u"),
+	@NamedQuery(name = "Usuario.buscaPorNome", query = "select u from Usuario u where" +
+	 " u.nome = :nome")
 })
 public class Usuario {
 
@@ -25,6 +32,9 @@ public class Usuario {
 
 	@NotNull
 	private String email;
+	
+	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER) // Relacionamento de um para muitos
+	private List<Telefone> telefoneUsers = new ArrayList<Telefone>();
 
 	public String getNome() {
 		return nome;
@@ -48,6 +58,14 @@ public class Usuario {
 
 	public void setId_usuario(int id_usuario) {
 		this.id_usuario = id_usuario;
+	}
+	
+	public List<Telefone> getTelefoneUsers() {
+		return telefoneUsers;
+	}
+	
+	public void setTelefoneUsers(List<Telefone> telefoneUsers) {
+		this.telefoneUsers = telefoneUsers;
 	}
 
 }

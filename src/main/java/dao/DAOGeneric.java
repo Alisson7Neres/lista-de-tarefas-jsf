@@ -12,18 +12,16 @@ public class DAOGeneric<E> {
 	@SuppressWarnings({ "unused" })
 	private static EntityManager entityManager = JPAUtil.getEntityManager();
 
-	public void Salvar(E usuario) {
+	public void salvar(E usuario) {
 
-		EntityManager entityManager = JPAUtil.getEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
+		entityManager.persist(usuario);
 		entityTransaction.commit();
-		entityManager.close();
 	}
 
 	public E atualizar(E usuario) {
 
-		EntityManager entityManager = JPAUtil.getEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		E retorno = entityManager.merge(usuario);
@@ -34,7 +32,6 @@ public class DAOGeneric<E> {
 
 	public void deletarPorId(E usuario) {
 
-		EntityManager entityManager = JPAUtil.getEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 
@@ -57,6 +54,25 @@ public class DAOGeneric<E> {
 		entityTransaction.commit();
 		return retorno;
 	}
+	
+public List<E> listarUsuarioTelefone(Class<E> entity) {
+		
+		EntityTransaction entityTransaction = entityManager.getTransaction();
+		entityTransaction.begin();
+		
+		@SuppressWarnings("unchecked")
+		List<E> retorno = entityManager.createQuery("from " + entity.getName()).getResultList();
+
+		entityTransaction.commit();
+		return retorno;
+	}
+
+public E pesquisar(int id, Class<E> entidade) {
+	entityManager.clear();
+	E e = (E) entityManager.createQuery("from " + entidade.getSimpleName() + " where id = " + id).getSingleResult();
+	
+	return e;
+}
 	
 	public E findById(int id, Class<E> entidade) {
 		entityManager.clear();

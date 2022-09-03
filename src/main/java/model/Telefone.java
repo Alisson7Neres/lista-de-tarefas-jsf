@@ -1,13 +1,12 @@
 package model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-
-import com.sun.istack.NotNull;
 
 @Entity
 public class Telefone {
@@ -16,7 +15,7 @@ public class Telefone {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id_telefone;
 
-	@NotNull
+	@Column(nullable = false)
 	private String numero;
 
 	@ManyToOne(optional = false, fetch = FetchType.EAGER) // Relacionamento de muitos para um

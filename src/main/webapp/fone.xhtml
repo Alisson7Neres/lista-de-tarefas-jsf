@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Telefone</title>
+	<link rel="stylesheet" href="css/index.css" />
+</h:head>
+<h:body>
+
+	<ul>
+		<li><a href="index.jsf">Início</a></li>
+		<li><a href="finalizar.jsf">Finalizar</a></li>
+		<li><a href="mailto:alisson.neres@hotmail.com">Contato</a></li>
+		<li><a
+			href="https://github.com/Alisson7Neres/lista-de-tarefas-jsf">About</a></li>
+	</ul>
+
+	<h:form id="formulario">
+		<br />
+		<h:panelGrid columns="2">
+			<h:outputLabel>Usuário:</h:outputLabel>
+			<h:outputLabel value="#{telefoneBean.user.nome}" />
+
+			<h:outputLabel>Número:</h:outputLabel>
+			<h:inputText value="#{telefoneBean.telefone.numero}" />
+		</h:panelGrid>
+		<br />
+		<br />
+
+		<h:commandButton value="Salvar" action="#{telefoneBean.salvar}" />
+	</h:form>
+
+	<h:form id="carregar">
+		<table>
+			<h:dataTable value="#{telefoneBean.user.telefoneUsers}" var="fone"
+				styleClass="order-table, dataTableClass"
+				headerClass="order-table-header"
+				rowClasses="order-table-odd-row,order-table-even-row">
+				<h:column>
+					<f:facet name="header">Nome</f:facet>
+					<h:outputText value="#{telefoneBean.user.nome}"></h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Email</f:facet>
+					<h:outputText value="#{telefoneBean.user.email}"></h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Numero</f:facet>
+					<h:outputText value="#{fone.numero}"></h:outputText>
+				</h:column>
+				<f:param name="codigouser" value="#{user.id_usuario}"></f:param>
+
+				<h:commandButton value="Salvar" action="#{telefoneBean.salvar}" />
+			</h:dataTable>
+		</table>
+	</h:form>
+</h:body>
+</html>

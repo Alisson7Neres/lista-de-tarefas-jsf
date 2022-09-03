@@ -6,8 +6,8 @@ import javax.persistence.Query;
 
 import model.Usuario;
 
-public class UsuarioDAO extends DAOGeneric<Usuario>{
-
+public class UsuarioDAO<E> extends DAOGeneric<Usuario>{
+	
 	public List<Usuario> findById(int id) {
 		Query query = super.getEntityManager().createQuery
 				("from Usuario where id =  " + id);

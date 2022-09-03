@@ -12,7 +12,7 @@
 <h:body>
 
 	<ul>
-		<li><a href="index.xhtml">Início</a></li>
+		<li><a href="index.jsf">Início</a></li>
 		<li><a href="mailto:alisson.neres@hotmail.com">Contato</a></li>
 		<li><a
 			href="https://github.com/Alisson7Neres/lista-de-tarefas-jsf">About</a></li>
@@ -33,8 +33,10 @@
 					<h:outputText value="#{user.email}"></h:outputText>
 				</h:column>
 				<h:column>
-					<f:facet name="header">Tarefas</f:facet>
-					<h:commandButton></h:commandButton>
+					<f:facet name="header">Telefones</f:facet>
+					<h:commandLink value="" action="fone.xhtml">Adicionar
+					<f:param name="codigouser" value="#{user.id_usuario}"></f:param>
+					</h:commandLink>
 				</h:column>
 			</h:dataTable>
 		</table>
