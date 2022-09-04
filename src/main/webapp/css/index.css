@@ -104,3 +104,8 @@ input[type=text] {
 	text-align: center;
 	border-top: 1px solid #BBBBBB;
 }
+.painel {
+	text-align: center;
+    justify-content: center;
+    display: grid;
+}

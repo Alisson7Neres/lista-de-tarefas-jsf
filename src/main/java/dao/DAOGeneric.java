@@ -40,8 +40,7 @@ public class DAOGeneric<E> {
 				.executeUpdate();
 
 		entityTransaction.commit();
-		entityManager.close();
-	}
+ 	}
 
 	public List<E> listarUsuario(Class<E> entity) {
 		
