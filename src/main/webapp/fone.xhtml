@@ -12,19 +12,19 @@
 <h:body>
 
 	<ul>
-		<li><a href="index.jsf">Início</a></li>
-		<li><a href="finalizar.jsf">Finalizar</a></li>
+		<li><a href="bem-vindo.jsf">Início</a></li>
 		<li><a href="mailto:alisson.neres@hotmail.com">Contato</a></li>
 		<li><a
 			href="https://github.com/Alisson7Neres/lista-de-tarefas-jsf">About</a></li>
 	</ul>
 
 	<h:form id="formulario" prependId="false">
+	
 		<br />
 		<div class="painel">
-		<h:panelGrid columns="2">
+		<h:panelGrid columns="2" >
 			<h:outputLabel>Usuário:</h:outputLabel>
-			<h:outputLabel value="#{telefoneBean.user.nome}" />
+			<h:outputLabel value="#{telefoneBean.usuario.nome}" />
 
 			<h:outputLabel>Número:</h:outputLabel>
 			<h:inputText value="#{telefoneBean.telefone.numero}" id="numero" required="true">
@@ -39,19 +39,19 @@
 
 	</h:form>
 
-	<h:form id="carregar">
+	<h:form id="carregar" prependId="false">
 		<table>
-			<h:dataTable value="#{telefoneBean.user.telefoneUsers}" var="fone"
+			<h:dataTable value="#{telefoneBean.usuario.telefoneUsers}" var="fone"
 				styleClass="order-table, dataTableClass"
 				headerClass="order-table-header"
 				rowClasses="order-table-odd-row,order-table-even-row">
 				<h:column>
 					<f:facet name="header">Nome</f:facet>
-					<h:outputText value="#{telefoneBean.user.nome}"></h:outputText>
+					<h:outputText value="#{telefoneBean.usuario.nome}"></h:outputText>
 				</h:column>
 				<h:column>
 					<f:facet name="header">Email</f:facet>
-					<h:outputText value="#{telefoneBean.user.email}"></h:outputText>
+					<h:outputText value="#{telefoneBean.usuario.email}"></h:outputText>
 				</h:column>
 				<h:column>
 					<f:facet name="header">Numero</f:facet>

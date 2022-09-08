@@ -6,7 +6,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<title>INDEX</title>
+	<title>Cadastrar</title>
 	<link rel="stylesheet" href="css/index.css"></link>
 	<style>
 button.ui-button {
@@ -17,7 +17,6 @@ button.ui-button {
 <h:body>
 	<ul>
 		<li><a href="index.jsf">Início</a></li>
-		<li><a href="cadastrar.jsf">Cadastrar</a></li>
 		<li><a href="mailto:alisson.neres@hotmail.com">Contato</a></li>
 		<li><a
 			href="https://github.com/Alisson7Neres/lista-de-tarefas-jsf">About</a></li>
@@ -29,23 +28,37 @@ button.ui-button {
 	<br />
 	<br />
 	<br />
-	<h:form id="formLogin" prependId="false">
+	<h:form id="formLogin">
 		<div>
 			<div id="div1">
+				<h:inputHidden value="#{usuarioBean.usuario.id_usuario}"></h:inputHidden>
 				<br />
 
+				<h:outputLabel value="Nome" />
+				<br />
+				<h:inputText value="#{usuarioBean.usuario.nome}"></h:inputText>
+
+				<br />
+				<br />
 				<h:outputLabel value="Email" />
 				<br />
-				<h:inputText value="#{usuarioBean.usuario.email}" id="email"></h:inputText>
-
+				<h:inputText value="#{usuarioBean.usuario.email}"></h:inputText>
 				<br />
 				<br />
-				<h:outputLabel value="Senha" />
-				<br />
-				<h:inputSecret value="#{usuarioBean.usuario.senha}" id="senha"></h:inputSecret>
+				<h:outputLabel value="Senha"></h:outputLabel>
+				<br/>
+				<h:inputSecret value="#{usuarioBean.usuario.senha}"></h:inputSecret>
 				<br /> <br />
-				<f:param name="codigouser" value="#{usuario.id_usuario}"></f:param>
-				<h:commandButton action="#{usuarioBean.logar}" value="Logar" class="logarBtn"/>
+				<h:commandButton action="#{usuarioBean.salvar}" value="Salvar"
+					style="   background-color: #4CAF50;
+							  border: none;
+							  color: white;
+							  padding: 15px 32px;
+							  text-align: center;
+							  text-decoration: none;
+							  display: inline-block;
+							  font-size: 16px;
+							  font-weight: bold;" />
 			</div>
 		</div>
 	</h:form>

@@ -14,7 +14,7 @@ import model.Usuario;
 @ViewScoped
 public class TelefoneBean {
 
-	private Usuario user = new Usuario();
+	private Usuario usuario = new Usuario();
 	private UsuarioDAO<Usuario> usuarioDao = new UsuarioDAO<Usuario>();
 
 	private TelefoneDAO<Telefone> dao = new TelefoneDAO<Telefone>();
@@ -25,25 +25,25 @@ public class TelefoneBean {
 	public void init() {
 		String coduser = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap()
 				.get("codigouser");
-		user = usuarioDao.pesquisar(Integer.parseInt(coduser), Usuario.class);
+		usuario = usuarioDao.pesquisar(Integer.parseInt(coduser), Usuario.class);
 	}
 	
 	public String salvar() {
-		telefone.setUsuario(user);
+		telefone.setUsuario(usuario);
 	
 		dao.salvar(telefone);
 		telefone = new Telefone();
-		user = usuarioDao.pesquisar(user.getId_usuario(), Usuario.class);
+		usuario = usuarioDao.pesquisar(usuario.getId_usuario(), Usuario.class);
 		return "";
 	}
-
+	
 	public void novo() {
 		telefone = new Telefone();
 	}
 
 	public void deletarPorId() {
 		dao.deletarPorId(telefone);
-		user = usuarioDao.pesquisar(user.getId_usuario(), Usuario.class);
+		usuario = usuarioDao.pesquisar(usuario.getId_usuario(), Usuario.class);
 		if (true) {
 			telefone = new Telefone();
 		}
@@ -65,12 +65,12 @@ public class TelefoneBean {
 		this.dao = dao;
 	}
 
-	public Usuario getUser() {
-		return user;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setUser(Usuario user) {
-		this.user = user;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public UsuarioDAO<Usuario> getUsuarioDao() {

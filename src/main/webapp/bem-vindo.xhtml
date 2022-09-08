@@ -6,13 +6,12 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<title>Finalizar</title>
+	<title>Bem-vindo</title>
 	<link rel="stylesheet" href="css/index.css" />
 </h:head>
 <h:body>
 
 	<ul>
-		<li><a href="bem-vindo.jsf">Início</a></li>
 		<li><a href="mailto:alisson.neres@hotmail.com">Contato</a></li>
 		<li><a
 			href="https://github.com/Alisson7Neres/lista-de-tarefas-jsf">About</a></li>
@@ -29,28 +28,11 @@
 		<f:metadata>
 			<f:event type="preRenderView" listener="#{usuarioBean.logar}" />
 		</f:metadata>
-		<table>
-			<h:panelGrid columns="3" styleClass="order-table, dataTableClass"
-				headerClass="order-table-header"
-				rowClasses="order-table-odd-row,order-table-even-row">
-				<h:column>
-					<h:outputLabel>Nome:</h:outputLabel>
-					<h:outputLabel value="#{telefoneBean.usuario.nome}" />
-				</h:column>
-				<h:column>
-					<h:outputLabel>Email:</h:outputLabel>
-					<h:outputLabel value="#{telefoneBean.usuario.email}" />
-				</h:column>
-				<h:column>
-					<f:facet name="header">Telefones</f:facet>
-					<h:commandLink value="" action="fone.jsf" class="accountEditBtn"
-						styleClass="accountEditBtn"> 
-						  <h:graphicImage url='icon/telephone.png' styleClass='regImgROff' width="50px"/>
-					<f:param name="codigouser" value="#{usuario.id_usuario}"></f:param>
-					</h:commandLink>
-				</h:column>
-			</h:panelGrid>
-		</table>
+		<div class="divCenter">
+			<h:commandLink action="finalizar.jsf" class="cadastro">Cadastro
+			<f:param name="codigouser" value="#{usuario.id_usuario}"></f:param>
+			</h:commandLink>
+		</div>
 	</h:form>
 
 </h:body>

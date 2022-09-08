@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -33,6 +34,9 @@ public class Usuario {
 	@NotNull
 	private String email;
 	
+	@Column(nullable = false)
+	private String senha;
+	
 	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER) // Relacionamento de um para muitos
 	private List<Telefone> telefoneUsers = new ArrayList<Telefone>();
 
@@ -50,6 +54,14 @@ public class Usuario {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public String getSenha() {
+		return senha;
+	}
+	
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 	public int getId_usuario() {
