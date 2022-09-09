@@ -39,6 +39,11 @@ public class UsuarioBean {
 		return "finalizar.xhtml";
 	}
 	
+	public String atualizar() {
+		dao.atualizar(usuario);
+		return "finalizar.jsf";
+	}
+	
 	public String novo() {
 		usuario = new Usuario();
 		listar();

@@ -6,7 +6,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<title>Finalizar</title>
+	<title>Atualizar</title>
 	<link rel="stylesheet" href="css/index.css" />
 </h:head>
 <h:body>
@@ -30,41 +30,34 @@
 			<f:event type="preRenderView" listener="#{usuarioBean.logar}" />
 		</f:metadata>
 		<table>
-			<h:panelGrid columns="5" styleClass="order-table, dataTableClass"
+			<h:panelGrid columns="4" styleClass="order-table, dataTableClass"
 				headerClass="order-table-header" 
 				rowClasses="order-table-odd-row,order-table-even-row" >
 				<h:column>
 					<h:outputLabel>Nome:</h:outputLabel>
-					<h:outputLabel value="#{telefoneBean.usuario.nome}" />
+					<h:inputText value="#{telefoneBean.usuario.nome}" />
 				</h:column>
 				<h:column>
 					<h:outputLabel>Email:</h:outputLabel>
-					<h:outputLabel value="#{telefoneBean.usuario.email}" />
+					<h:inputText value="#{telefoneBean.usuario.email}" />
 				</h:column>
 				<h:column>
-					<h:commandLink class="cadastro">Tarefas</h:commandLink>
+					<h:inputSecret value="#{usuarioBean.usuario.senha}" onchange="" id="senha"/>
 				</h:column>
 				<h:column>
-					<f:facet name="header">Telefones</f:facet>
-					<h:commandLink value="" action="fone.jsf" class="accountEditBtn"
-						styleClass="accountEditBtn">
-						<h:graphicImage url='icon/telephone2.png' styleClass='regImgROff'
-							width="50px" />
+					<h:commandButton action="#{usuarioBean.atualizar}" image="icon/checked2.png" style="width:50px;" >
 						<f:param name="codigouser" value="#{usuario.id_usuario}"></f:param>
-					</h:commandLink>
-				</h:column>
-				<h:column>
-					<h:commandLink action="atualizar.jsf">
-					<h:graphicImage url="icon/update2.png" styleClass='regImgROff'
-							width="50px"></h:graphicImage>
-						<f:param name="codigouser" value="#{usuario.id_usuario}"></f:param>
-					</h:commandLink>
+					</h:commandButton>
 				
 				</h:column>
 			</h:panelGrid>
 		</table>
-
 	</h:form>
+	
+	<script>
+		var esconde = document.getElementById('senha');
+		esconde.style.display = 'none';
+	</script>
 
 </h:body>
 </html>

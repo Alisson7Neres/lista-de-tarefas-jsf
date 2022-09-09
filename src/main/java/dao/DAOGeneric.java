@@ -29,6 +29,10 @@ public class DAOGeneric<E> {
 		entityTransaction.begin();
 		E retorno = entityManager.merge(usuario);
 		entityTransaction.commit();
+		
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+		session.removeAttribute("usuario");
+		session.invalidate();
 
 		return retorno;
 	}
