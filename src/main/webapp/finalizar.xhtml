@@ -42,7 +42,9 @@
 					<h:outputLabel value="#{telefoneBean.usuario.email}" />
 				</h:column>
 				<h:column>
-					<h:commandLink class="cadastro">Tarefas</h:commandLink>
+					<h:commandLink class="cadastro" action="tarefas.jsf">Tarefas
+						<f:param name="coduserbean" value="#{usuario.id_usuario}"></f:param>
+					</h:commandLink>
 				</h:column>
 				<h:column>
 					<f:facet name="header">Telefones</f:facet>

@@ -1,7 +1,6 @@
 package model;
 
-import java.util.Date;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -9,19 +8,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import com.sun.istack.NotNull;
-
 @Entity
 public class Lista {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id_lista;
-	@NotNull
-	private Date data;
-	@NotNull
-	private Date hora;
-	@NotNull
+	@Column(nullable = false)
+	private String data;
+	@Column(nullable = false)
+	private String hora;
+	@Column(nullable = false)
 	private String status;
 
 	@ManyToOne(optional = false, fetch = FetchType.EAGER) // Relacionamento de muitos para um
@@ -35,23 +32,23 @@ public class Lista {
 		this.id_lista = id_lista;
 	}
 
-	public Date getData() {
+	public String getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 
-	public Date getHora() {
+	public String getHora() {
 		return hora;
 	}
 
-	public void setHora(Date hora) {
+	public void setHora(String hora) {
 		this.hora = hora;
 	}
 
-	public String isStatus() {
+	public String getStatus() {
 		return status;
 	}
 
@@ -66,5 +63,7 @@ public class Lista {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
+	
 
 }

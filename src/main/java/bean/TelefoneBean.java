@@ -6,6 +6,9 @@ import javax.faces.context.FacesContext;
 
 import dao.TelefoneDAO;
 import dao.UsuarioDAO;
+
+import java.io.IOException;
+
 import javax.annotation.PostConstruct;
 import model.Telefone;
 import model.Usuario;
@@ -22,10 +25,13 @@ public class TelefoneBean {
 	private Telefone telefone = new Telefone();
 
 	@PostConstruct
-	public void init() {
+	public void init() throws IOException {
 		String coduser = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap()
 				.get("codigouser");
 		usuario = usuarioDao.pesquisar(Integer.parseInt(coduser), Usuario.class);
+		if (coduser == null) {
+			FacesContext.getCurrentInstance().getExternalContext().redirect("bem-vindo.jsf");
+		}
 	}
 	
 	public String salvar() {

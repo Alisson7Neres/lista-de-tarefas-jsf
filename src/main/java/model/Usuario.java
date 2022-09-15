@@ -37,8 +37,11 @@ public class Usuario {
 	@Column(nullable = false)
 	private String senha;
 	
-	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER) // Relacionamento de um para muitos
+	@OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY) // Relacionamento de um para muitos
 	private List<Telefone> telefoneUsers = new ArrayList<Telefone>();
+	
+	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER) // Relacionamento de um para muitos
+	private List<Lista> listaUsers = new ArrayList<Lista>();
 
 	public String getNome() {
 		return nome;
@@ -78,6 +81,14 @@ public class Usuario {
 	
 	public void setTelefoneUsers(List<Telefone> telefoneUsers) {
 		this.telefoneUsers = telefoneUsers;
+	}
+	
+	public List<Lista> getListaUsers() {
+		return listaUsers;
+	}
+	
+	public void setListaUsers(List<Lista> listaUsers) {
+		this.listaUsers = listaUsers;
 	}
 
 }

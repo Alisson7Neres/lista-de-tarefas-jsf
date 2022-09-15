@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Lista</title>
+	<link rel="stylesheet" href="css/index.css" />
+</h:head>
+<h:body>
+
+	<ul>
+		<li><a href="bem-vindo.jsf">Início</a></li>
+		<li><a href="mailto:alisson.neres@hotmail.com">Contato</a></li>
+		<li><a
+			href="https://github.com/Alisson7Neres/lista-de-tarefas-jsf">About</a></li>
+	</ul>
+	
+		<h:form id="enviar" prependId="false">
+		<div class="painel">
+			<h:panelGrid columns="2" >
+				<h:outputLabel>Nome</h:outputLabel>
+				<h:outputLabel value="#{listaBean.usuario.nome}"></h:outputLabel>
+
+				<h:outputLabel>Email</h:outputLabel>
+				<h:outputLabel value="#{listaBean.usuario.email}"></h:outputLabel>
+
+				<h:outputLabel>Data</h:outputLabel>
+				<h:inputText value="#{listaBean.lista.data}" id="data" required="true"></h:inputText>
+				<h:outputLabel>Hora</h:outputLabel>
+				<h:inputText value="#{listaBean.lista.hora}" id="hora" required="true"></h:inputText>
+
+				<h:outputLabel>Status</h:outputLabel>
+				<h:inputText value="#{listaBean.lista.status}" id="status" required="true"></h:inputText>
+			</h:panelGrid>
+			<h:commandButton value="Salvar" action="#{listaBean.salvar}" ajax="false"/>
+		</div>
+	</h:form>
+
+<h:form id="carregar" prependId="false">
+		<table>
+			<h:dataTable value="#{listaBean.usuario.listaUsers}" var="lista"
+				styleClass="order-table, dataTableClass"
+				headerClass="order-table-header"
+				rowClasses="order-table-odd-row,order-table-even-row">
+					<h:column>
+					<f:facet name="header">Data</f:facet>
+					<h:outputText value="#{lista.data}"></h:outputText>
+				</h:column>
+					<h:column>
+					<f:facet name="header">Hora</f:facet>
+					<h:outputText value="#{lista.hora}"></h:outputText>
+				</h:column>
+					<h:column>
+					<f:facet name="header">Andamento</f:facet>
+					<h:outputText value="#{lista.status}"></h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Editar</f:facet>
+					<h:commandLink>
+						<f:setPropertyActionListener value="#{lista}" target="#{listaBean.lista}"></f:setPropertyActionListener>
+					Editar
+					</h:commandLink>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Deletar</f:facet>
+					<h:commandLink action="#{listaBean.deletarPorId}">
+						<f:setPropertyActionListener value="#{lista}" target="#{listaBean.lista}"></f:setPropertyActionListener>
+						Deletar
+					</h:commandLink>
+				</h:column>
+			</h:dataTable>
+		</table>
+	</h:form>
+	
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+
+<script>
+	$('#data').mask('99/99/9999');
+	$('#hora').mask('99:99');
+</script>
+</head>
+</h:body>
+</html>
