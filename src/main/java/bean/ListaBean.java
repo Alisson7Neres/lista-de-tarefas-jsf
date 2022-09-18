@@ -1,6 +1,7 @@
 package bean;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -29,9 +30,11 @@ public class ListaBean {
 	
 	
 	public String salvar() {
+		FacesContext faces = FacesContext.getCurrentInstance();
 		if (!lista.getData().isEmpty() && !lista.getHora().isEmpty()) {
 		lista.setUsuario(usuario);
 		dao.salvar(lista);
+		faces.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Sucesso", "Tarefa adicionada"));
 		return "finalizar.jsf";
 		} else 
 			return "bem-vindo.jsf";

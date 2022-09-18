@@ -17,7 +17,7 @@ import model.Usuario;
 @ViewScoped
 public class TelefoneBean {
 
-	private Usuario usuario = new Usuario();
+	private Usuario user = new Usuario();
 	private UsuarioDAO<Usuario> usuarioDao = new UsuarioDAO<Usuario>();
 
 	private TelefoneDAO<Telefone> dao = new TelefoneDAO<Telefone>();
@@ -25,31 +25,35 @@ public class TelefoneBean {
 	private Telefone telefone = new Telefone();
 
 	@PostConstruct
-	public void init() throws IOException {
+	public void init() {
 		String coduser = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap()
 				.get("codigouser");
-		usuario = usuarioDao.pesquisar(Integer.parseInt(coduser), Usuario.class);
+		user = usuarioDao.pesquisar(Integer.parseInt(coduser), Usuario.class);
 		if (coduser == null) {
-			FacesContext.getCurrentInstance().getExternalContext().redirect("bem-vindo.jsf");
+			try {
+				FacesContext.getCurrentInstance().getExternalContext().redirect("bem-vindo.jsf");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
-	
+
 	public String salvar() {
-		telefone.setUsuario(usuario);
-	
+		telefone.setUsuario(user);
+
 		dao.salvar(telefone);
 		telefone = new Telefone();
-		usuario = usuarioDao.pesquisar(usuario.getId_usuario(), Usuario.class);
+		user = usuarioDao.pesquisar(user.getId_usuario(), Usuario.class);
 		return "";
 	}
-	
+
 	public void novo() {
 		telefone = new Telefone();
 	}
 
 	public void deletarPorId() {
 		dao.deletarPorId(telefone);
-		usuario = usuarioDao.pesquisar(usuario.getId_usuario(), Usuario.class);
+		user = usuarioDao.pesquisar(user.getId_usuario(), Usuario.class);
 		if (true) {
 			telefone = new Telefone();
 		}
@@ -71,12 +75,12 @@ public class TelefoneBean {
 		this.dao = dao;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
+	public Usuario getUser() {
+		return user;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setUser(Usuario user) {
+		this.user = user;
 	}
 
 	public UsuarioDAO<Usuario> getUsuarioDao() {

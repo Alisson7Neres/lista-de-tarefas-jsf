@@ -35,9 +35,13 @@
 				<h:outputLabel>Status</h:outputLabel>
 				<h:inputText value="#{listaBean.lista.status}" id="status" required="true"></h:inputText>
 			</h:panelGrid>
-			<h:commandButton value="Salvar" action="#{listaBean.salvar}" ajax="false"/>
+			<h:commandButton value="Salvar" action="#{listaBean.salvar}" ajax="false">
+				<f:ajax execute="@form" render="mensagens"></f:ajax>
+			</h:commandButton>
 		</div>
+	<h:message id="mensagens"></h:message>
 	</h:form>
+	
 
 <h:form id="carregar" prependId="false">
 		<table>

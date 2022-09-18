@@ -19,10 +19,10 @@ import model.Usuario;
 
 @ManagedBean(name = "usuarioBean")
 @ViewScoped
-@SessionScoped
 public class UsuarioBean {
 	
 	private Usuario usuario = new Usuario();
+	private Telefone telefone = new Telefone();
 	private UsuarioDAO<Usuario> usuarioDAO = new UsuarioDAO<Usuario>();
 	private DAOGeneric<Usuario> dao = new DAOGeneric<Usuario>();
 	private TelefoneDAO<Telefone> telefoneDAO = new TelefoneDAO<Telefone>();
@@ -118,6 +118,18 @@ public class UsuarioBean {
 	
 	public UsuarioDAO<Usuario> getUsuarioDAO() {
 		return usuarioDAO;
+	}
+
+	public Telefone getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(Telefone telefone) {
+		this.telefone = telefone;
+	}
+
+	public void setUsuarioDAO(UsuarioDAO<Usuario> usuarioDAO) {
+		this.usuarioDAO = usuarioDAO;
 	}
 	
 }

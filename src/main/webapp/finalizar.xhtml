@@ -35,11 +35,11 @@
 				rowClasses="order-table-odd-row,order-table-even-row" >
 				<h:column>
 					<h:outputLabel>Nome:</h:outputLabel>
-					<h:outputLabel value="#{telefoneBean.usuario.nome}" />
+					<h:outputLabel value="#{usuario.nome}" />
 				</h:column>
 				<h:column>
 					<h:outputLabel>Email:</h:outputLabel>
-					<h:outputLabel value="#{telefoneBean.usuario.email}" />
+					<h:outputLabel value="#{usuario.email}" />
 				</h:column>
 				<h:column>
 					<h:commandLink class="cadastro" action="tarefas.jsf">Tarefas
@@ -59,7 +59,7 @@
 					<h:commandLink action="atualizar.jsf">
 					<h:graphicImage url="icon/update2.png" styleClass='regImgROff'
 							width="50px"></h:graphicImage>
-						<f:param name="codigouser" value="#{usuario.id_usuario}"></f:param>
+						<f:param name="codigouser" value="#{user.id_usuario}"></f:param>
 					</h:commandLink>
 				
 				</h:column>

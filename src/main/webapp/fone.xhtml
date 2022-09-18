@@ -12,46 +12,49 @@
 <h:body>
 
 	<ul>
-		<li><a href="bem-vindo.jsf">Início</a></li>
+		<li><a href="index.jsf">Início</a></li>
+		<li><a href="finalizar.jsf">Finalizar</a></li>
 		<li><a href="mailto:alisson.neres@hotmail.com">Contato</a></li>
 		<li><a
 			href="https://github.com/Alisson7Neres/lista-de-tarefas-jsf">About</a></li>
 	</ul>
 
 	<h:form id="formulario" prependId="false">
-	
+
 		<br />
 		<div class="painel">
-		<h:panelGrid columns="2" >
-			<h:outputLabel>Usuário:</h:outputLabel>
-			<h:outputLabel value="#{telefoneBean.usuario.nome}" />
+			<h:panelGrid columns="2">
+				<h:outputLabel>Usuário:</h:outputLabel>
+				<h:outputLabel value="#{telefoneBean.user.nome}" />
 
-			<h:outputLabel>Número:</h:outputLabel>
-			<h:inputText value="#{telefoneBean.telefone.numero}" id="numero" required="true">
-			<f:validateLength minimum="10">
-			</f:validateLength>
-			</h:inputText>
-		</h:panelGrid>
-		<h:commandButton value="Salvar" action="#{telefoneBean.salvar}" />
+				<h:outputLabel>Número:</h:outputLabel>
+				<h:inputText value="#{telefoneBean.telefone.numero}" id="numero"
+					required="true">
+					<f:validateLength minimum="10">
+					</f:validateLength>
+				</h:inputText>
+			</h:panelGrid>
+			<h:commandButton value="Salvar" action="#{telefoneBean.salvar}" />
 		</div>
 		<br />
 		<br />
 
 	</h:form>
 
-	<h:form id="carregar" prependId="false">
+
+	<h:form id="carregar">
 		<table>
-			<h:dataTable value="#{telefoneBean.usuario.telefoneUsers}" var="fone"
+			<h:dataTable value="#{telefoneBean.user.telefoneUsers}" var="fone"
 				styleClass="order-table, dataTableClass"
 				headerClass="order-table-header"
 				rowClasses="order-table-odd-row,order-table-even-row">
 				<h:column>
 					<f:facet name="header">Nome</f:facet>
-					<h:outputText value="#{telefoneBean.usuario.nome}"></h:outputText>
+					<h:outputText value="#{telefoneBean.user.nome}"></h:outputText>
 				</h:column>
 				<h:column>
 					<f:facet name="header">Email</f:facet>
-					<h:outputText value="#{telefoneBean.usuario.email}"></h:outputText>
+					<h:outputText value="#{telefoneBean.user.email}"></h:outputText>
 				</h:column>
 				<h:column>
 					<f:facet name="header">Numero</f:facet>
@@ -60,14 +63,16 @@
 				<h:column>
 					<f:facet name="header">Editar</f:facet>
 					<h:commandLink>
-						<f:setPropertyActionListener value="#{fone}" target="#{telefoneBean.telefone}"></f:setPropertyActionListener>
+						<f:setPropertyActionListener value="#{fone}"
+							target="#{telefoneBean.telefone}"></f:setPropertyActionListener>
 					Editar
 					</h:commandLink>
 				</h:column>
 				<h:column>
 					<f:facet name="header">Deletar</f:facet>
 					<h:commandLink action="#{telefoneBean.deletarPorId}">
-						<f:setPropertyActionListener value="#{fone}" target="#{telefoneBean.telefone}"></f:setPropertyActionListener>
+						<f:setPropertyActionListener value="#{fone}"
+							target="#{telefoneBean.telefone}"></f:setPropertyActionListener>
 						Deletar
 					</h:commandLink>
 				</h:column>
@@ -81,14 +86,15 @@
 							  display: inline-block;
 							  font-size: 16px;
 							  font-weight: bold;
-							  margin: 10px;"/>
+							  margin: 10px;" />
 			</h:dataTable>
 		</table>
 	</h:form>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
 		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 		crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
 	<script>
 		$('#numero').mask("(99) 9 9999-9999");
 	</script>

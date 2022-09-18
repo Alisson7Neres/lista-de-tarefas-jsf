@@ -35,18 +35,18 @@
 				rowClasses="order-table-odd-row,order-table-even-row" >
 				<h:column>
 					<h:outputLabel>Nome:</h:outputLabel>
-					<h:inputText value="#{telefoneBean.usuario.nome}" />
+					<h:inputText value="#{usuario.nome}" />
 				</h:column>
 				<h:column>
 					<h:outputLabel>Email:</h:outputLabel>
-					<h:inputText value="#{telefoneBean.usuario.email}" />
+					<h:inputText value="#{usuario.email}" />
 				</h:column>
 				<h:column>
 					<h:inputSecret value="#{usuarioBean.usuario.senha}" onchange="" id="senha"/>
 				</h:column>
 				<h:column>
 					<h:commandButton action="#{usuarioBean.atualizar}" image="icon/checked2.png" style="width:50px;" >
-						<f:param name="codigouser" value="#{usuario.id_usuario}"></f:param>
+						<f:param name="codigouser" value="#{user.id_usuario}"></f:param>
 					</h:commandButton>
 				
 				</h:column>
