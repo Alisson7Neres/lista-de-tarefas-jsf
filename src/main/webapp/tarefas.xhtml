@@ -13,14 +13,15 @@
 
 	<ul>
 		<li><a href="bem-vindo.jsf">Início</a></li>
+		<li><a href="finalizar.jsf">Finalizar</a></li>
 		<li><a href="mailto:alisson.neres@hotmail.com">Contato</a></li>
 		<li><a
 			href="https://github.com/Alisson7Neres/lista-de-tarefas-jsf">About</a></li>
 	</ul>
-	
-		<h:form id="enviar" prependId="false">
+
+	<h:form id="enviar" prependId="false">
 		<div class="painel">
-			<h:panelGrid columns="2" >
+			<h:panelGrid columns="2">
 				<h:outputLabel>Nome</h:outputLabel>
 				<h:outputLabel value="#{listaBean.usuario.nome}"></h:outputLabel>
 
@@ -28,65 +29,92 @@
 				<h:outputLabel value="#{listaBean.usuario.email}"></h:outputLabel>
 
 				<h:outputLabel>Data</h:outputLabel>
-				<h:inputText value="#{listaBean.lista.data}" id="data" required="true"></h:inputText>
+				<h:inputText value="#{listaBean.lista.data}" id="data"
+					required="true"></h:inputText>
 				<h:outputLabel>Hora</h:outputLabel>
-				<h:inputText value="#{listaBean.lista.hora}" id="hora" required="true"></h:inputText>
-
+				<h:inputText value="#{listaBean.lista.hora}" id="hora"
+					required="true"></h:inputText>
 				<h:outputLabel>Status</h:outputLabel>
-				<h:inputText value="#{listaBean.lista.status}" id="status" required="true"></h:inputText>
+				<h:selectBooleanCheckbox value="#{listaBean.lista.status}">
+				Concluído
+				</h:selectBooleanCheckbox>
+				<h:outputLabel>Importância</h:outputLabel>
+				<h:selectManyMenu value="#{listaBean.lista.importancia}">
+					<f:selectItem itemValue="#{null}" itemLabel="-- Select --"
+						noSelectionOption="true" />
+					<f:selectItem itemLabel="Baixa" itemValue="1" />
+					<f:selectItem itemLabel="Média" itemValue="2" />
+					<f:selectItem itemLabel="Alta" itemValue="3" />
+				</h:selectManyMenu>
 			</h:panelGrid>
-			<h:commandButton value="Salvar" action="#{listaBean.salvar}" ajax="false">
+			<h:commandButton class="salvar" value="Salvar"
+				action="#{listaBean.salvar}" ajax="false">
 				<f:ajax execute="@form" render="mensagens"></f:ajax>
 			</h:commandButton>
 		</div>
-	<h:message id="mensagens"></h:message>
+		<h:message id="mensagens"></h:message>
 	</h:form>
-	
 
-<h:form id="carregar" prependId="false">
+
+	<h:form id="carregar" prependId="false">
 		<table>
-			<h:dataTable value="#{listaBean.usuario.listaUsers}" var="lista"
+			<p:dataTable value="#{listaBean.usuario.listaUsers}" var="lista"
 				styleClass="order-table, dataTableClass"
 				headerClass="order-table-header"
-				rowClasses="order-table-odd-row,order-table-even-row">
-					<h:column>
+				rowClasses="order-table-odd-row,order-table-even-row"
+				sortBy="#{lista.status}"  allowUnsorting="true" sortMode="single">
+				<p:column>
 					<f:facet name="header">Data</f:facet>
-					<h:outputText value="#{lista.data}"></h:outputText>
-				</h:column>
-					<h:column>
+					<p:outputLabel value="#{lista.data}"></p:outputLabel>
+				</p:column>
+				<p:column>
 					<f:facet name="header">Hora</f:facet>
-					<h:outputText value="#{lista.hora}"></h:outputText>
-				</h:column>
-					<h:column>
-					<f:facet name="header">Andamento</f:facet>
-					<h:outputText value="#{lista.status}"></h:outputText>
-				</h:column>
-				<h:column>
+					<p:outputLabel value="#{lista.hora}"></p:outputLabel>
+				</p:column>
+				<p:column>
+					<f:facet name="header">Status</f:facet>
+					<p:outputLabel value="#{lista.statusString}"></p:outputLabel>
+				</p:column>
+				<p:column sortBy="#{lista.importancia}" headerText="Importância">
+					<p:outputLabel value="#{lista.importanciaString}"></p:outputLabel>
+				</p:column>
+				<p:column>
 					<f:facet name="header">Editar</f:facet>
 					<h:commandLink>
-						<f:setPropertyActionListener value="#{lista}" target="#{listaBean.lista}"></f:setPropertyActionListener>
-					Editar
+						<center>
+							<p:graphicImage url="icon/edit.png" styleClass="regImgROff"
+								style="width:50px;"></p:graphicImage>
+						</center>
+						<f:setPropertyActionListener value="#{lista}"
+							target="#{listaBean.lista}"></f:setPropertyActionListener>
 					</h:commandLink>
-				</h:column>
-				<h:column>
+				</p:column>
+				<p:column>
 					<f:facet name="header">Deletar</f:facet>
 					<h:commandLink action="#{listaBean.deletarPorId}">
-						<f:setPropertyActionListener value="#{lista}" target="#{listaBean.lista}"></f:setPropertyActionListener>
-						Deletar
+						<center>
+							<p:graphicImage url="icon/delete.png" styleClass='regImgROff'
+								width="50px">
+							</p:graphicImage>
+						</center>
+						<f:setPropertyActionListener value="#{lista}"
+							target="#{listaBean.lista}"></f:setPropertyActionListener>
 					</h:commandLink>
-				</h:column>
-			</h:dataTable>
+				</p:column>
+			</p:dataTable>
 		</table>
 	</h:form>
-	
-<head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+
+	<head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
 
 <script>
 	$('#data').mask('99/99/9999');
 	$('#hora').mask('99:99');
 </script>
-</head>
+	</head>
 </h:body>
 </html>

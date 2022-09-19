@@ -19,7 +19,13 @@ public class Lista {
 	@Column(nullable = false)
 	private String hora;
 	@Column(nullable = false)
-	private String status;
+	private boolean status;
+	@Column(nullable = false)
+	private String statusString = "";
+	@Column(nullable = false)
+	private int[] importancia = { 0 };
+	@Column(nullable = false)
+	private String importanciaString = "";
 
 	@ManyToOne(optional = false, fetch = FetchType.EAGER) // Relacionamento de muitos para um
 	private Usuario usuario;
@@ -48,14 +54,53 @@ public class Lista {
 		this.hora = hora;
 	}
 
-	public String getStatus() {
+	public boolean isStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(boolean status) {
 		this.status = status;
 	}
 
+	public String getStatusString() {
+		if (status != false) {
+			statusString = "Concluído";
+		} else {
+			statusString = "Andamento";
+		}
+		return statusString;
+	}
+
+	public void setStatusString(String statusString) {
+		this.statusString = statusString;
+	}
+
+	public int[] getImportancia() {
+		return importancia;
+	}
+
+	public void setImportancia(int[] importancia) {
+		this.importancia = importancia;
+	}
+
+	public String getImportanciaString() {
+		if (importancia[0] == 1) {
+			importanciaString = "Baixa";
+		}
+		if (importancia[0] == 2) {
+			importanciaString = "Média";
+		}
+		if (importancia[0] == 3) {
+			importanciaString = "Alta";
+		}
+		
+		return importanciaString;
+	}
+
+	public void setImportanciaString(String importanciaString) {
+		this.importanciaString = importanciaString;
+	}
+	
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -63,7 +108,4 @@ public class Lista {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-
-	
-
 }

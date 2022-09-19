@@ -1,5 +1,7 @@
 package bean;
 
+import java.io.IOException;
+
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -27,8 +29,6 @@ public class ListaBean {
 		usuario = usuarioDAO.pesquisar(Integer.parseInt(coduserbean), Usuario.class);
 	}
 	
-	
-	
 	public String salvar() {
 		FacesContext faces = FacesContext.getCurrentInstance();
 		if (!lista.getData().isEmpty() && !lista.getHora().isEmpty()) {
@@ -43,8 +43,10 @@ public class ListaBean {
 	public void deletarPorId() {
 		dao.deletarPorId(lista);
 		usuario = usuarioDAO.pesquisar(usuario.getId_usuario(), Usuario.class);
-		if(true) {
-			Lista lista = new Lista();
+		try {
+			FacesContext.getCurrentInstance().getExternalContext().redirect("finalizar.jsf");
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 

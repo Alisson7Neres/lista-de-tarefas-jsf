@@ -156,6 +156,18 @@ input[type=password] {
 	margin: 10px;
 }
 
+.salvar  {
+	background-color: #4CAF50;
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	font-weight: bold;
+	margin: 10px;}
+
 .divCenter {
 	text-align: center;
 	padding-top: 300px;
