@@ -49,7 +49,7 @@ public class ListaBean {
 			e.printStackTrace();
 		}
 	}
-
+	
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -89,6 +89,5 @@ public class ListaBean {
 	public void setDao(DAOGeneric<Lista> dao) {
 		this.dao = dao;
 	}
-
 	
 }

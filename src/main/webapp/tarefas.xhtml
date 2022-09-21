@@ -39,7 +39,7 @@
 				Concluído
 				</h:selectBooleanCheckbox>
 				<h:outputLabel>Importância</h:outputLabel>
-				<h:selectManyMenu value="#{listaBean.lista.importancia}">
+				<h:selectManyMenu value="#{listaBean.lista.importancia}" style="height: 80px; width: 200px;">
 					<f:selectItem itemValue="#{null}" itemLabel="-- Select --"
 						noSelectionOption="true" />
 					<f:selectItem itemLabel="Baixa" itemValue="1" />
@@ -62,7 +62,8 @@
 				styleClass="order-table, dataTableClass"
 				headerClass="order-table-header"
 				rowClasses="order-table-odd-row,order-table-even-row"
-				sortBy="#{lista.status}"  allowUnsorting="true" sortMode="single">
+				sortBy="#{lista.status}"  allowUnsorting="true" sortMode="single"
+				 paginator="true" rows="5" lazy="true">
 				<p:column>
 					<f:facet name="header">Data</f:facet>
 					<p:outputLabel value="#{lista.data}"></p:outputLabel>

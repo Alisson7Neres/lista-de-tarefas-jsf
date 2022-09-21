@@ -20,6 +20,9 @@
 	</ul>
 
 	<h:form id="formulario" prependId="false">
+	<center>
+	<p:messages id="messages"/>
+	</center>
 
 		<br />
 		<div class="painel">
@@ -44,23 +47,24 @@
 
 	<h:form id="carregar" prependId="false">
 		<table>
-			<h:dataTable value="#{telefoneBean.user.telefoneUsers}" var="fone"
+			<p:dataTable value="#{telefoneBean.user.telefoneUsers}" var="fone"
 				styleClass="order-table, dataTableClass"
 				headerClass="order-table-header"
-				rowClasses="order-table-odd-row,order-table-even-row">
-				<h:column>
+				rowClasses="order-table-odd-row,order-table-even-row"
+				rows="5" paginator="true" lazy="true" >
+				<p:column>
 					<f:facet name="header">Nome</f:facet>
-					<h:outputText value="#{telefoneBean.user.nome}"></h:outputText>
-				</h:column>
-				<h:column>
+					<p:outputLabel value="#{telefoneBean.user.nome}"></p:outputLabel>
+				</p:column>
+				<p:column>
 					<f:facet name="header">Email</f:facet>
-					<h:outputText value="#{telefoneBean.user.email}"></h:outputText>
-				</h:column>
-				<h:column>
+					<p:outputLabel value="#{telefoneBean.user.email}"></p:outputLabel>
+				</p:column>
+				<p:column>
 					<f:facet name="header">Numero</f:facet>
-					<h:outputText value="#{fone.numero}"></h:outputText>
-				</h:column>
-				<h:column>
+					<p:outputLabel value="#{fone.numero}"></p:outputLabel>
+				</p:column>
+				<p:column>
 					<f:facet name="header">Editar</f:facet>
 					<h:commandLink>
 					<center>
@@ -69,8 +73,8 @@
 						<f:setPropertyActionListener value="#{fone}"
 							target="#{telefoneBean.telefone}"></f:setPropertyActionListener>
 					</h:commandLink>
-				</h:column>
-				<h:column>
+				</p:column>
+				<p:column>
 					<f:facet name="header">Deletar</f:facet>
 					<h:commandLink action="#{telefoneBean.deletarPorId}">
 					<center>
@@ -81,9 +85,9 @@
 						<f:setPropertyActionListener value="#{fone}"
 							target="#{telefoneBean.telefone}"></f:setPropertyActionListener>
 					</h:commandLink>
-				</h:column>
+				</p:column>
 				<h:commandButton value="Salvar" action="#{telefoneBean.salvar}" />
-			</h:dataTable>
+			</p:dataTable>
 		</table>
 	</h:form>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"

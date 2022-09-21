@@ -1,5 +1,6 @@
 package bean;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -44,6 +45,7 @@ public class TelefoneBean {
 		dao.salvar(telefone);
 		telefone = new Telefone();
 		user = usuarioDao.pesquisar(user.getId_usuario(), Usuario.class);
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Telefone salvo!", "salvo"));
 		return "";
 	}
 
@@ -54,6 +56,7 @@ public class TelefoneBean {
 	public void deletarPorId() {
 		dao.deletarPorId(telefone);
 		user = usuarioDao.pesquisar(user.getId_usuario(), Usuario.class);
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Telefone excluído!", "excluído"));
 		if (true) {
 			telefone = new Telefone();
 		}

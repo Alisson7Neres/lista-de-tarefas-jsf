@@ -13,7 +13,7 @@ import model.Usuario;
 
 public class DAOGeneric<E> {
 
-	private static EntityManager entityManager = JPAUtil.getEntityManager();
+	protected static EntityManager entityManager = JPAUtil.getEntityManager();
 
 	public void salvar(E usuario) {
 

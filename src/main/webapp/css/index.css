@@ -9,12 +9,14 @@ form {
 	align-items: center;
 }
 
+/*
 body {
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
   height: 100vh;
 }
+*/
 
 
 @keyframes gradient {
@@ -166,7 +168,9 @@ input[type=password] {
 	display: inline-block;
 	font-size: 16px;
 	font-weight: bold;
-	margin: 10px;}
+	margin: 10px;
+	cursor: pointer;
+	}
 
 .divCenter {
 	text-align: center;
@@ -183,6 +187,7 @@ input[type=password] {
 	display: inline-block;
 	font-size: 16px;
 	font-weight: bold;
+	cursor: pointer;
 }
 
 table {
@@ -195,4 +200,8 @@ td, th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
+}
+
+#messages {
+	width: 100%;
 }
