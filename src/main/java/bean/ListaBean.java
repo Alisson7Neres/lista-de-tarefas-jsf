@@ -9,6 +9,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import dao.DAOGeneric;
+import dao.ListaDAO;
 import dao.UsuarioDAO;
 import model.Lista;
 import model.Usuario;
@@ -18,6 +19,7 @@ import model.Usuario;
 public class ListaBean {
 	
 	private Lista lista = new Lista();
+	private ListaDAO listaDAO = new ListaDAO();
 	private DAOGeneric<Lista> dao = new DAOGeneric<Lista>();
 	private Usuario usuario = new Usuario();
 	private UsuarioDAO<Usuario> usuarioDAO = new UsuarioDAO<Usuario>();
@@ -48,6 +50,10 @@ public class ListaBean {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void orderBy() {
+		listaDAO.orderBy();
 	}
 	
 	public Usuario getUsuario() {
@@ -88,6 +94,14 @@ public class ListaBean {
 
 	public void setDao(DAOGeneric<Lista> dao) {
 		this.dao = dao;
+	}
+
+	public ListaDAO getListaDAO() {
+		return listaDAO;
+	}
+
+	public void setListaDAO(ListaDAO listaDAO) {
+		this.listaDAO = listaDAO;
 	}
 	
 }

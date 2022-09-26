@@ -13,6 +13,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.OrderBy;
+
 import com.sun.istack.NotNull;
 
 @Entity
@@ -41,6 +43,7 @@ public class Usuario {
 	private List<Telefone> telefoneUsers = new ArrayList<Telefone>();
 	
 	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER) // Relacionamento de um para muitos
+	@OrderBy(clause = "status")
 	private List<Lista> listaUsers = new ArrayList<Lista>();
 
 	public String getNome() {

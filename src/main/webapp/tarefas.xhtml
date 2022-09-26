@@ -39,7 +39,8 @@
 				Concluído
 				</h:selectBooleanCheckbox>
 				<h:outputLabel>Importância</h:outputLabel>
-				<h:selectManyMenu value="#{listaBean.lista.importancia}" style="height: 80px; width: 200px;">
+				<h:selectManyMenu value="#{listaBean.lista.importancia}"
+					style="height: 80px; width: 200px;">
 					<f:selectItem itemValue="#{null}" itemLabel="-- Select --"
 						noSelectionOption="true" />
 					<f:selectItem itemLabel="Baixa" itemValue="1" />
@@ -57,53 +58,64 @@
 
 
 	<h:form id="carregar" prependId="false">
-		<table>
-			<p:dataTable value="#{listaBean.usuario.listaUsers}" var="lista"
-				styleClass="order-table, dataTableClass"
-				headerClass="order-table-header"
-				rowClasses="order-table-odd-row,order-table-even-row"
-				sortBy="#{lista.status}"  allowUnsorting="true" sortMode="single"
-				 paginator="true" rows="5" lazy="true">
-				<p:column>
-					<f:facet name="header">Data</f:facet>
-					<p:outputLabel value="#{lista.data}"></p:outputLabel>
-				</p:column>
-				<p:column>
-					<f:facet name="header">Hora</f:facet>
-					<p:outputLabel value="#{lista.hora}"></p:outputLabel>
-				</p:column>
-				<p:column>
-					<f:facet name="header">Status</f:facet>
-					<p:outputLabel value="#{lista.statusString}"></p:outputLabel>
-				</p:column>
-				<p:column sortBy="#{lista.importancia}" headerText="Importância">
-					<p:outputLabel value="#{lista.importanciaString}"></p:outputLabel>
-				</p:column>
-				<p:column>
-					<f:facet name="header">Editar</f:facet>
-					<h:commandLink>
-						<center>
-							<p:graphicImage url="icon/edit.png" styleClass="regImgROff"
-								style="width:50px;"></p:graphicImage>
-						</center>
-						<f:setPropertyActionListener value="#{lista}"
-							target="#{listaBean.lista}"></f:setPropertyActionListener>
-					</h:commandLink>
-				</p:column>
-				<p:column>
-					<f:facet name="header">Deletar</f:facet>
-					<h:commandLink action="#{listaBean.deletarPorId}">
-						<center>
-							<p:graphicImage url="icon/delete.png" styleClass='regImgROff'
-								width="50px">
-							</p:graphicImage>
-						</center>
-						<f:setPropertyActionListener value="#{lista}"
-							target="#{listaBean.lista}"></f:setPropertyActionListener>
-					</h:commandLink>
-				</p:column>
-			</p:dataTable>
-		</table>
+		<p:dataTable value="#{listaBean.usuario.listaUsers}" var="lista"
+			styleClass="order-table, dataTableClass"
+			headerClass="order-table-header"
+			rowClasses="order-table-odd-row,order-table-even-row"
+			sortBy="#{lista.status}" allowUnsorting="true" sortMode="single"
+			paginator="true" rows="5" lazy="false"
+			filteredValue="#{dtFilterView.lista}" globalFilterOnly="#{dtFilterView.globalFilterOnly}"  widgetVar="listaTable">
+
+			<f:facet name="header">
+				<div class="flex align-items-center justify-content-between">
+					<center>
+						<span>Buscar data</span>
+						<div>
+							<p:inputText id="globalFilter"
+								onkeyup="PF('listaTable').filter()" style="width:10rem"
+								placeholder="99/99/9999" />
+							<p:commandButton value="Pesquisar" update="@form"
+								styleClass="ml-2" action="#{dtFilterView.toggleGlobalFilter()}" />
+						</div>
+					</center>
+				</div>
+			</f:facet>
+
+			<p:column filterBy="#{lista.data}" sortBy="#{lista.data}" filterMatchMode="contains" >
+			<f:facet name="header">Data</f:facet>
+				<h:outputText value="#{lista.data}"></h:outputText>
+			</p:column>
+			<p:column sortBy="#{lista.statusString}">
+				<f:facet name="header">Status</f:facet>
+				<p:outputLabel value="#{lista.statusString}"></p:outputLabel>
+			</p:column>
+			<p:column headerText="Importância">
+				<p:outputLabel value="#{lista.importanciaString}"></p:outputLabel>
+			</p:column>
+			<p:column>
+				<f:facet name="header">Editar</f:facet>
+				<h:commandLink>
+					<center>
+						<p:graphicImage url="icon/edit.png" styleClass="regImgROff"
+							style="width:50px;"></p:graphicImage>
+					</center>
+					<f:setPropertyActionListener value="#{lista}"
+						target="#{listaBean.lista}"></f:setPropertyActionListener>
+				</h:commandLink>
+			</p:column>
+			<p:column>
+				<f:facet name="header">Deletar</f:facet>
+				<h:commandLink action="#{listaBean.deletarPorId}">
+					<center>
+						<p:graphicImage url="icon/delete.png" styleClass='regImgROff'
+							width="50px">
+						</p:graphicImage>
+					</center>
+					<f:setPropertyActionListener value="#{lista}"
+						target="#{listaBean.lista}"></f:setPropertyActionListener>
+				</h:commandLink>
+			</p:column>
+		</p:dataTable>
 	</h:form>
 
 	<head>
