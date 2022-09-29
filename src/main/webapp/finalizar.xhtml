@@ -8,6 +8,7 @@
 <h:head>
 	<title>Finalizar</title>
 	<link rel="stylesheet" href="css/index.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 </h:head>
 <h:body>
 
@@ -15,7 +16,7 @@
 		<li><a href="bem-vindo.jsf">Início</a></li>
 		<li><a href="mailto:alisson.neres@hotmail.com">Contato</a></li>
 		<li><a
-			href="https://github.com/Alisson7Neres/lista-de-tarefas-jsf">About</a></li>
+			href="https://github.com/Alisson7Neres/lista-de-tarefas-jsf" target="_blank">About</a></li>
 	</ul>
 
 
@@ -30,21 +31,16 @@
 			<f:event type="preRenderView" listener="#{usuarioBean.logar}" />
 		</f:metadata>
 		<table>
-			<h:panelGrid columns="5" styleClass="order-table, dataTableClass"
+			<h:panelGrid columns="3" styleClass="order-table, dataTableClass"
 				headerClass="order-table-header" 
 				rowClasses="order-table-odd-row,order-table-even-row" >
 				<h:column>
-					<h:outputLabel>Nome:</h:outputLabel>
-					<h:outputLabel value="#{usuario.nome}" />
-				</h:column>
-				<h:column>
-					<h:outputLabel>Email:</h:outputLabel>
-					<h:outputLabel value="#{usuario.email}" />
-				</h:column>
-				<h:column>
-					<h:commandLink class="cadastro" action="tarefas.jsf">Tarefas
-						<f:param name="coduserbean" value="#{usuario.id_usuario}"></f:param>
+					<h:commandLink action="atualizar.jsf">
+					<h:graphicImage url="icon/update2.png" styleClass='regImgROff'
+							width="50px"></h:graphicImage>
+						<f:param name="codigouser" value="#{user.id_usuario}"></f:param>
 					</h:commandLink>
+				
 				</h:column>
 				<h:column>
 					<f:facet name="header">Telefones</f:facet>
@@ -56,12 +52,9 @@
 					</h:commandLink>
 				</h:column>
 				<h:column>
-					<h:commandLink action="atualizar.jsf">
-					<h:graphicImage url="icon/update2.png" styleClass='regImgROff'
-							width="50px"></h:graphicImage>
-						<f:param name="codigouser" value="#{user.id_usuario}"></f:param>
+						<h:commandLink class="cadastro" action="tarefas.jsf">Tarefas
+						<f:param name="coduserbean" value="#{usuario.id_usuario}"></f:param>
 					</h:commandLink>
-				
 				</h:column>
 			</h:panelGrid>
 		</table>

@@ -8,6 +8,7 @@
 <h:head>
 	<title>Atualizar</title>
 	<link rel="stylesheet" href="css/index.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 </h:head>
 <h:body>
 
@@ -15,7 +16,7 @@
 		<li><a href="bem-vindo.jsf">Início</a></li>
 		<li><a href="mailto:alisson.neres@hotmail.com">Contato</a></li>
 		<li><a
-			href="https://github.com/Alisson7Neres/lista-de-tarefas-jsf">About</a></li>
+			href="https://github.com/Alisson7Neres/lista-de-tarefas-jsf" target="_blank">About</a></li>
 	</ul>
 
 
@@ -42,7 +43,7 @@
 					<h:inputText value="#{usuario.email}" />
 				</h:column>
 				<h:column>
-					<h:inputSecret value="#{usuarioBean.usuario.senha}" onchange="" id="senha"/>
+					<h:inputSecret value="#{usuarioBean.usuario.senha}" onchange="" id="senha" />
 				</h:column>
 				<h:column>
 					<h:commandButton action="#{usuarioBean.atualizar}" image="icon/checked2.png" style="width:50px;" >

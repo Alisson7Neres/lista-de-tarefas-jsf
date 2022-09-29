@@ -8,6 +8,7 @@
 <h:head>
 	<title>Lista</title>
 	<link rel="stylesheet" href="css/index.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 </h:head>
 <h:body>
 
@@ -16,7 +17,8 @@
 		<li><a href="finalizar.jsf">Finalizar</a></li>
 		<li><a href="mailto:alisson.neres@hotmail.com">Contato</a></li>
 		<li><a
-			href="https://github.com/Alisson7Neres/lista-de-tarefas-jsf">About</a></li>
+			href="https://github.com/Alisson7Neres/lista-de-tarefas-jsf"
+			target="_blank">About</a></li>
 	</ul>
 
 	<h:form id="enviar" prependId="false">
@@ -59,30 +61,30 @@
 
 	<h:form id="carregar" prependId="false">
 		<p:dataTable value="#{listaBean.usuario.listaUsers}" var="lista"
-			styleClass="order-table, dataTableClass"
-			headerClass="order-table-header"
-			rowClasses="order-table-odd-row,order-table-even-row"
 			sortBy="#{lista.status}" allowUnsorting="true" sortMode="single"
 			paginator="true" rows="5" lazy="false"
-			filteredValue="#{dtFilterView.lista}" globalFilterOnly="#{dtFilterView.globalFilterOnly}"  widgetVar="listaTable">
+			filteredValue="#{dtFilterView.lista}"
+			globalFilterOnly="#{dtFilterView.globalFilterOnly}"
+			widgetVar="listaTable" id="table" style="width:100%; margin: 0%"
+			scrollable="true" rowIndexVar="rowindex"
+			styleClass="table-reflow-desktop" reflow="true">
 
 			<f:facet name="header">
 				<div class="flex align-items-center justify-content-between">
-					<center>
-						<span>Buscar data</span>
-						<div>
-							<p:inputText id="globalFilter"
-								onkeyup="PF('listaTable').filter()" style="width:10rem"
-								placeholder="99/99/9999" />
-							<p:commandButton value="Pesquisar" update="@form"
-								styleClass="ml-2" action="#{dtFilterView.toggleGlobalFilter()}" />
-						</div>
-					</center>
+				<center>
+					<span>Buscar data</span>
+					<div>
+						<p:inputText id="globalFilter" onkeyup="PF('listaTable').filter()"
+							style="width:10rem" placeholder="99/99/9999" />
+						<p:commandButton value="Pesquisar" update="@form"
+							styleClass="ml-2" action="#{dtFilterView.toggleGlobalFilter()}" />
+					</div>
+				</center>
 				</div>
 			</f:facet>
 
-			<p:column filterBy="#{lista.data}" sortBy="#{lista.data}" filterMatchMode="contains" >
-			<f:facet name="header">Data</f:facet>
+			<p:column filterBy="#{lista.data}" filterMatchMode="contains">
+				<f:facet name="header">Data</f:facet>
 				<h:outputText value="#{lista.data}"></h:outputText>
 			</p:column>
 			<p:column sortBy="#{lista.statusString}">
@@ -97,7 +99,7 @@
 				<h:commandLink>
 					<center>
 						<p:graphicImage url="icon/edit.png" styleClass="regImgROff"
-							style="width:50px;"></p:graphicImage>
+							style="width:30px;"></p:graphicImage>
 					</center>
 					<f:setPropertyActionListener value="#{lista}"
 						target="#{listaBean.lista}"></f:setPropertyActionListener>
@@ -108,7 +110,7 @@
 				<h:commandLink action="#{listaBean.deletarPorId}">
 					<center>
 						<p:graphicImage url="icon/delete.png" styleClass='regImgROff'
-							width="50px">
+							width="30px">
 						</p:graphicImage>
 					</center>
 					<f:setPropertyActionListener value="#{lista}"
