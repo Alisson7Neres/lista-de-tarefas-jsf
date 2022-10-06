@@ -29,13 +29,14 @@ public class TelefoneBean {
 	public void init() {
 		String coduser = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap()
 				.get("codigouser");
-		user = usuarioDao.pesquisar(Integer.parseInt(coduser), Usuario.class);
 		if (coduser == null) {
 			try {
-				FacesContext.getCurrentInstance().getExternalContext().redirect("bem-vindo.jsf");
+				FacesContext.getCurrentInstance().getExternalContext().redirect("index.jsf");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		} else {
+			user = usuarioDao.pesquisar(Integer.parseInt(coduser), Usuario.class);
 		}
 	}
 

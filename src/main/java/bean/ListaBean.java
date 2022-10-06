@@ -28,7 +28,15 @@ public class ListaBean {
 	@PostConstruct
 	public void init() {
 		String coduserbean = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("coduserbean");
+		if (coduserbean == null) {
+			try {
+				FacesContext.getCurrentInstance().getExternalContext().redirect("index.jsf");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
 		usuario = usuarioDAO.pesquisar(Integer.parseInt(coduserbean), Usuario.class);
+		}
 	}
 	
 	public String salvar() {
