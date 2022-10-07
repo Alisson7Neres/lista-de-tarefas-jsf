@@ -32,7 +32,7 @@ public class UsuarioBean {
 		usuarios = dao.listarUsuario(Usuario.class);
 	}
 
-	public String salvar() {
+	public String salvar() throws IOException {
 		dao.salvar(usuario);
 		usuarios.add(usuario);
 		return "finalizar.xhtml";

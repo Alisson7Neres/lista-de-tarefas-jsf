@@ -40,7 +40,7 @@ public class TelefoneBean {
 		}
 	}
 
-	public String salvar() {
+	public String salvar() throws IOException {
 		telefone.setUsuario(user);
 
 		dao.salvar(telefone);

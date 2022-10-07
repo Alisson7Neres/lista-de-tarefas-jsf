@@ -3,6 +3,7 @@ package dao;
 import java.io.IOException;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -15,12 +16,20 @@ public class DAOGeneric<E> {
 
 	protected static EntityManager entityManager = JPAUtil.getEntityManager();
 
-	public void salvar(E usuario) {
+	public void salvar(E usuario) throws IOException {
+		
+		try {
+			
 
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		entityManager.persist(usuario);
 		entityTransaction.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "ERROR", e.getCause().getMessage()));
+			FacesContext.getCurrentInstance().getExternalContext().redirect("error.jsf");
+		}
 	}
 
 	public E atualizar(E usuario) {

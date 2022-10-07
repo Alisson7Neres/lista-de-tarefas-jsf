@@ -39,7 +39,7 @@ public class ListaBean {
 		}
 	}
 	
-	public String salvar() {
+	public String salvar() throws IOException {
 		FacesContext faces = FacesContext.getCurrentInstance();
 		if (!lista.getData().isEmpty() && !lista.getHora().isEmpty()) {
 		lista.setUsuario(usuario);

@@ -15,7 +15,7 @@ public class Telefone {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id_telefone;
 
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String numero;
 
 	@ManyToOne(optional = false, fetch = FetchType.EAGER) // Relacionamento de muitos para um
