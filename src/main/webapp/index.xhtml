@@ -21,7 +21,8 @@ button.ui-button {
 		<li><a href="cadastrar.jsf">Cadastrar</a></li>
 		<li><a href="mailto:alisson.neres@hotmail.com">Contato</a></li>
 		<li><a
-			href="https://github.com/Alisson7Neres/lista-de-tarefas-jsf" target="_blank">About</a></li>
+			href="https://github.com/Alisson7Neres/lista-de-tarefas-jsf"
+			target="_blank">About</a></li>
 	</ul>
 
 	<br />
@@ -39,14 +40,14 @@ button.ui-button {
 				<br />
 				<h:inputText value="#{usuarioBean.usuario.email}" id="email"></h:inputText>
 
-				<br />
-				<br />
+				<br /> <br />
 				<h:outputLabel value="Senha" />
 				<br />
 				<h:inputSecret value="#{usuarioBean.usuario.senha}" id="senha"></h:inputSecret>
 				<br /> <br />
 				<f:param name="codigouser" value="#{usuario.id_usuario}"></f:param>
-				<h:commandButton action="#{usuarioBean.logar}" value="Logar" class="logarBtn"/>
+				<h:commandButton action="#{usuarioBean.logar}" value="Logar"
+					class="logarBtn" />
 			</div>
 		</div>
 	</h:form>

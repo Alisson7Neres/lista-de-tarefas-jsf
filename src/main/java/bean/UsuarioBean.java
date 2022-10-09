@@ -19,14 +19,14 @@ import model.Usuario;
 @ManagedBean(name = "usuarioBean")
 @ViewScoped
 public class UsuarioBean {
-	
+
 	private Usuario usuario = new Usuario();
 	private Telefone telefone = new Telefone();
 	private UsuarioDAO<Usuario> usuarioDAO = new UsuarioDAO<Usuario>();
 	private DAOGeneric<Usuario> dao = new DAOGeneric<Usuario>();
 	private TelefoneDAO<Telefone> telefoneDAO = new TelefoneDAO<Telefone>();
 	private List<Usuario> usuarios = new ArrayList<Usuario>();
-	
+
 	@PostConstruct
 	public void init() {
 		usuarios = dao.listarUsuario(Usuario.class);
@@ -37,51 +37,50 @@ public class UsuarioBean {
 		usuarios.add(usuario);
 		return "finalizar.xhtml";
 	}
-	
+
 	public String atualizar() {
 		dao.atualizar(usuario);
 		return "finalizar.jsf";
 	}
-	
+
 	public String novo() {
 		usuario = new Usuario();
 		listar();
 		return "";
 	}
-	
+
 	public String deletar() {
 		dao.deletarPorId(usuario);
-		if(true) {
+		if (true) {
 			usuario = new Usuario();
 			listar();
 		}
 		return "";
 	}
-	
+
 	public void listar() {
 		usuarios = dao.listarUsuario(Usuario.class);
 	}
-	
+
 	public String logar() throws IOException {
 
-		// Por segurança, quando finalizar.jsf for carregada, ela irá verificar se tem usuário na sessão
-		HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
-			    .getExternalContext().getSession(true);
+		// Por segurança, quando finalizar.jsf for carregada, ela irá verificar se tem
+		// usuário na sessão
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 
 		Usuario usuarioLogado = (Usuario) session.getAttribute("usuario");
 		if (usuarioLogado != null) {
-			//usuario = dao.pesquisar(usuario.getId_usuario(), Usuario.class);
 			return "finalizar.jsf";
 		}
 		dao.logar(usuario.getEmail(), usuario.getSenha());
 		return "index.jsf";
 	}
-	
+
 	public String logout() {
 		dao.logout(usuario);
 		return "index.jsf";
 	}
-	
+
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -106,15 +105,15 @@ public class UsuarioBean {
 	public void setUsuarios(List<Usuario> usuarios) {
 		this.usuarios = usuarios;
 	}
-	
+
 	public TelefoneDAO<Telefone> getTelefoneDAO() {
 		return telefoneDAO;
 	}
-	
+
 	public void setTelefoneDAO(TelefoneDAO<Telefone> telefoneDAO) {
 		this.telefoneDAO = telefoneDAO;
 	}
-	
+
 	public UsuarioDAO<Usuario> getUsuarioDAO() {
 		return usuarioDAO;
 	}
@@ -130,5 +129,5 @@ public class UsuarioBean {
 	public void setUsuarioDAO(UsuarioDAO<Usuario> usuarioDAO) {
 		this.usuarioDAO = usuarioDAO;
 	}
-	
+
 }

@@ -17,18 +17,21 @@ public class DAOGeneric<E> {
 	protected static EntityManager entityManager = JPAUtil.getEntityManager();
 
 	public void salvar(E usuario) throws IOException {
-		
-		try {
-			
 
-		EntityTransaction entityTransaction = entityManager.getTransaction();
-		entityTransaction.begin();
-		entityManager.persist(usuario);
-		entityTransaction.commit();
+		try {
+
+			EntityTransaction entityTransaction = entityManager.getTransaction();
+			entityTransaction.begin();
+			entityManager.persist(usuario);
+			entityTransaction.commit();
+
 		} catch (Exception e) {
+
 			e.printStackTrace();
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "ERROR", e.getCause().getMessage()));
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_FATAL, "ERROR", e.getCause().getMessage()));
 			FacesContext.getCurrentInstance().getExternalContext().redirect("error.jsf");
+
 		}
 	}
 
@@ -38,7 +41,8 @@ public class DAOGeneric<E> {
 		entityTransaction.begin();
 		E retorno = entityManager.merge(usuario);
 		entityTransaction.commit();
-		
+
+		// Quando o usuário for atualizado, a sessão irá fazer um logout
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 		session.removeAttribute("usuario");
 		session.invalidate();
@@ -69,7 +73,7 @@ public class DAOGeneric<E> {
 		entityTransaction.commit();
 		return retorno;
 	}
-	
+
 	public List<E> listarUsuarioTelefone(Class<E> entity) {
 
 		EntityTransaction entityTransaction = entityManager.getTransaction();
@@ -83,6 +87,7 @@ public class DAOGeneric<E> {
 	}
 
 	public E pesquisar(int id, Class<E> entidade) {
+		// Limpando a memória do Hibernate
 		entityManager.clear();
 		@SuppressWarnings("unchecked")
 		E e = (E) entityManager.createQuery("from " + entidade.getSimpleName() + " where id = " + id).getSingleResult();
@@ -94,18 +99,12 @@ public class DAOGeneric<E> {
 		return entityManager;
 	}
 
-	public E pesquisarUser(int id, Class<E> entidade) {
-		E e = (E) entityManager.find(entidade, id);
-
-		return e;
-	}
-
 	public int logar(String email, String senha) throws IOException {
 		try {
 
 			// Query que irá verificar o login
 			Usuario usuario = (Usuario) entityManager
-					.createQuery("select u from Usuario u where u.email =:email and u.senha = :senha ")
+					.createQuery("select u from Usuario u where u.email =: email and u.senha =: senha ")
 					.setParameter("email", email).setParameter("senha", senha).getSingleResult();
 
 			// Iniciando a sessão

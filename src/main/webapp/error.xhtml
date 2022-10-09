@@ -13,14 +13,16 @@
 <h:body>
 
 	<ul>
-	<li><a href="index.jsf">Início</a></li>
+		<li><a href="index.jsf">Início</a></li>
 		<li><a href="mailto:alisson.neres@hotmail.com">Contato</a></li>
-		<li><a href="https://github.com/Alisson7Neres/lista-de-tarefas-jsf" target="_blank">About</a></li>
+		<li><a
+			href="https://github.com/Alisson7Neres/lista-de-tarefas-jsf"
+			target="_blank">About</a></li>
 	</ul>
 
 
 	<h:form id="finalizar" prependId="false">
-			<p:messages id="messages"/>
+		<p:messages id="messages" />
 		<h:commandButton action="#{usuarioBean.logout}" value="Sair"
 			image="icon/exit.png" class="sairButton">
 			<f:param name="codigouser" value="#{user.id_usuario}"></f:param>
@@ -31,7 +33,7 @@
 			<f:event type="preRenderView" listener="#{usuarioBean.logar}" />
 		</f:metadata>
 		<div class="divCenter">
-			<h:outputLabel style="font-size: 100px">ERROR! RETORNE PARA O INÍCIO!</h:outputLabel>
+			<h:outputLabel style="font-size: 60px">ERROR! RETORNE PARA O INÍCIO!</h:outputLabel>
 		</div>
 	</h:form>
 

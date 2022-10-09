@@ -20,7 +20,8 @@ button.ui-button {
 		<li><a href="index.jsf">Início</a></li>
 		<li><a href="mailto:alisson.neres@hotmail.com">Contato</a></li>
 		<li><a
-			href="https://github.com/Alisson7Neres/lista-de-tarefas-jsf" target="_blank">About</a></li>
+			href="https://github.com/Alisson7Neres/lista-de-tarefas-jsf"
+			target="_blank">About</a></li>
 	</ul>
 
 	<br />
@@ -30,7 +31,7 @@ button.ui-button {
 	<br />
 	<br />
 	<h:form id="formLogin" prependId="false" class="div">
-	<p:messages id="messages"/>
+		<p:messages id="messages" />
 		<div>
 			<div id="div1">
 				<h:inputHidden value="#{usuarioBean.usuario.id_usuario}"></h:inputHidden>
@@ -38,20 +39,22 @@ button.ui-button {
 
 				<h:outputLabel value="Nome" />
 				<br />
-				<h:inputText value="#{usuarioBean.usuario.nome}" id="nome" required="true"></h:inputText>
+				<h:inputText value="#{usuarioBean.usuario.nome}" id="nome"
+					required="true"></h:inputText>
 
-				<br />
-				<br />
+				<br /> <br />
 				<h:outputLabel value="Email" />
 				<br />
-				<h:inputText value="#{usuarioBean.usuario.email}" id="email" required="true"></h:inputText>
-				<br />
-				<br />
-				<h:outputLabel value="Senha"></h:outputLabel>
-				<br/>
-				<h:inputSecret value="#{usuarioBean.usuario.senha}" id="senha" required="true"></h:inputSecret>
+				<h:inputText value="#{usuarioBean.usuario.email}" id="email"
+					required="true"></h:inputText>
 				<br /> <br />
-				<h:commandButton action="#{usuarioBean.salvar}" value="Cadastrar" class="logarBtn"/>
+				<h:outputLabel value="Senha"></h:outputLabel>
+				<br />
+				<h:inputSecret value="#{usuarioBean.usuario.senha}" id="senha"
+					required="true"></h:inputSecret>
+				<br /> <br />
+				<h:commandButton action="#{usuarioBean.salvar}" value="Cadastrar"
+					class="logarBtn" />
 			</div>
 		</div>
 	</h:form>

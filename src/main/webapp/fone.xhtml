@@ -17,13 +17,14 @@
 		<li><a href="finalizar.jsf">Finalizar</a></li>
 		<li><a href="mailto:alisson.neres@hotmail.com">Contato</a></li>
 		<li><a
-			href="https://github.com/Alisson7Neres/lista-de-tarefas-jsf" target="_blank">About</a></li>
+			href="https://github.com/Alisson7Neres/lista-de-tarefas-jsf"
+			target="_blank">About</a></li>
 	</ul>
 
 	<h:form id="formulario" prependId="false">
-	<center>
-	<p:messages id="message"/>
-	</center>
+		<center>
+			<p:messages id="message" />
+		</center>
 
 		<br />
 		<div class="painel">
@@ -38,7 +39,8 @@
 					</f:validateLength>
 				</h:inputText>
 			</h:panelGrid>
-			<h:commandButton  class="salvar"  value="Salvar" action="#{telefoneBean.salvar}" />
+			<h:commandButton class="salvar" value="Salvar"
+				action="#{telefoneBean.salvar}" />
 		</div>
 		<br />
 		<br />
@@ -51,8 +53,8 @@
 			<p:dataTable value="#{telefoneBean.user.telefoneUsers}" var="fone"
 				styleClass="order-table, dataTableClass"
 				headerClass="order-table-header"
-				rowClasses="order-table-odd-row,order-table-even-row"
-				rows="5" paginator="true" lazy="true" scrollable="false">
+				rowClasses="order-table-odd-row,order-table-even-row" rows="5"
+				paginator="true" lazy="true" scrollable="false">
 				<p:column>
 					<f:facet name="header">Nome</f:facet>
 					<p:outputLabel value="#{telefoneBean.user.nome}"></p:outputLabel>
@@ -64,9 +66,10 @@
 				<p:column>
 					<f:facet name="header">Editar</f:facet>
 					<h:commandLink>
-					<center>
-					<h:graphicImage url="icon/edit.png" styleClass="regImgROff" style="width:50px;"></h:graphicImage>
-					</center>
+						<center>
+							<h:graphicImage url="icon/edit.png" styleClass="regImgROff"
+								style="width:50px;"></h:graphicImage>
+						</center>
 						<f:setPropertyActionListener value="#{fone}"
 							target="#{telefoneBean.telefone}"></f:setPropertyActionListener>
 					</h:commandLink>
@@ -74,11 +77,11 @@
 				<p:column>
 					<f:facet name="header">Deletar</f:facet>
 					<h:commandLink action="#{telefoneBean.deletarPorId}">
-					<center>
-						<h:graphicImage url="icon/delete.png" styleClass='regImgROff'
-							width="50px">
-						</h:graphicImage>
-					</center>
+						<center>
+							<h:graphicImage url="icon/delete.png" styleClass='regImgROff'
+								width="50px">
+							</h:graphicImage>
+						</center>
 						<f:setPropertyActionListener value="#{fone}"
 							target="#{telefoneBean.telefone}"></f:setPropertyActionListener>
 					</h:commandLink>

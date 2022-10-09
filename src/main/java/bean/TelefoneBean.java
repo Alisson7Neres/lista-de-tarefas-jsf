@@ -27,15 +27,22 @@ public class TelefoneBean {
 
 	@PostConstruct
 	public void init() {
+		// A variável coduser(coidigouser) vai fazer regerência ao id do usuário
 		String coduser = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap()
 				.get("codigouser");
+		// Se a variável for nula, irá retornar a página inicial do sistema
 		if (coduser == null) {
 			try {
 				FacesContext.getCurrentInstance().getExternalContext().redirect("index.jsf");
 			} catch (IOException e) {
 				e.printStackTrace();
+				try {
+					FacesContext.getCurrentInstance().getExternalContext().redirect("error.jsf");
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
 			}
-		} else {
+		} else { // Se id for diferente de nulo, irá pesquisar o id pelo usuário
 			user = usuarioDao.pesquisar(Integer.parseInt(coduser), Usuario.class);
 		}
 	}
@@ -46,7 +53,8 @@ public class TelefoneBean {
 		dao.salvar(telefone);
 		telefone = new Telefone();
 		user = usuarioDao.pesquisar(user.getId_usuario(), Usuario.class);
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Telefone salvo!", "salvo"));
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Telefone salvo!", "salvo"));
 		return "";
 	}
 
@@ -57,7 +65,8 @@ public class TelefoneBean {
 	public void deletarPorId() {
 		dao.deletarPorId(telefone);
 		user = usuarioDao.pesquisar(user.getId_usuario(), Usuario.class);
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Telefone excluído!", "excluído"));
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_FATAL, "Telefone excluído!", "excluído"));
 		if (true) {
 			telefone = new Telefone();
 		}

@@ -9,7 +9,6 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import dao.DAOGeneric;
-import dao.ListaDAO;
 import dao.UsuarioDAO;
 import model.Lista;
 import model.Usuario;
@@ -17,17 +16,17 @@ import model.Usuario;
 @ManagedBean(name = "listaBean")
 @ViewScoped
 public class ListaBean {
-	
+
 	private Lista lista = new Lista();
-	private ListaDAO listaDAO = new ListaDAO();
 	private DAOGeneric<Lista> dao = new DAOGeneric<Lista>();
 	private Usuario usuario = new Usuario();
 	private UsuarioDAO<Usuario> usuarioDAO = new UsuarioDAO<Usuario>();
 	private DAOGeneric<Usuario> daoGeneric = new DAOGeneric<Usuario>();
-	
+
 	@PostConstruct
 	public void init() {
-		String coduserbean = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("coduserbean");
+		String coduserbean = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap()
+				.get("coduserbean");
 		if (coduserbean == null) {
 			try {
 				FacesContext.getCurrentInstance().getExternalContext().redirect("index.jsf");
@@ -35,21 +34,21 @@ public class ListaBean {
 				e.printStackTrace();
 			}
 		} else {
-		usuario = usuarioDAO.pesquisar(Integer.parseInt(coduserbean), Usuario.class);
+			usuario = usuarioDAO.pesquisar(Integer.parseInt(coduserbean), Usuario.class);
 		}
 	}
-	
+
 	public String salvar() throws IOException {
 		FacesContext faces = FacesContext.getCurrentInstance();
 		if (!lista.getData().isEmpty() && !lista.getHora().isEmpty()) {
-		lista.setUsuario(usuario);
-		dao.salvar(lista);
-		faces.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Sucesso", "Tarefa adicionada"));
-		return "finalizar.jsf";
-		} else 
+			lista.setUsuario(usuario);
+			dao.salvar(lista);
+			faces.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "Tarefa adicionada"));
+			return "finalizar.jsf";
+		} else
 			return "bem-vindo.jsf";
 	}
-	
+
 	public void deletarPorId() {
 		dao.deletarPorId(lista);
 		usuario = usuarioDAO.pesquisar(usuario.getId_usuario(), Usuario.class);
@@ -59,11 +58,7 @@ public class ListaBean {
 			e.printStackTrace();
 		}
 	}
-	
-	public void orderBy() {
-		listaDAO.orderBy();
-	}
-	
+
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -103,13 +98,4 @@ public class ListaBean {
 	public void setDao(DAOGeneric<Lista> dao) {
 		this.dao = dao;
 	}
-
-	public ListaDAO getListaDAO() {
-		return listaDAO;
-	}
-
-	public void setListaDAO(ListaDAO listaDAO) {
-		this.listaDAO = listaDAO;
-	}
-	
 }
